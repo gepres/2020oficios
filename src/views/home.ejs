@@ -1,0 +1,192 @@
+<section class="buscar-home">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 buscar-home-col">
+        <h2 class="buscar-home__title">¿ Qué servicios estas buscando ?</h2>
+        <div class="input-group buscar-home__input-group">
+          <input type="text" class="form-control buscar-home__input" id="inputBH" placeholder="Buscar Servicio" aria-label="Recipient's username" aria-describedby="button-addon2">
+          <div class="input-group-append">
+            <button class="btn buscar-home__btn-buscar" id="btniInputBH" type="button" id="button-addon2">Buscar <i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+        <div class="buscar-home__btn-extras">
+          <button class="btn hvr-float">Ubigeo</button>
+          <button class="btn hvr-float">Ultimos buscados</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="servicios-destacados">
+  <div class="container-fluid">
+    <h3 class="servicios-destacados__title">Ultimos Servicios Publicados <a href="/busquedaAll/1" class="btn hvr-float">Ver Más</a></h3>
+    <div class="row mb-4">
+      <% if(anuncios.length > 0){ %> 
+      <% anuncios.forEach(item => { %> 
+      <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+        <div class="content-servicios">
+          <div class="card shadow-sm " style="width: 18rem;">
+            <div class="servicios-destacados__header">
+                <div class="servicios-destacados__codelike">
+                  <span class="servicios-destacados__codelike-span1"><%= item.codigo %></span>
+                  <!-- <span class="servicios-destacados__codelike-span2">
+                    <i class="far fa-heart"></i>
+                  </span> -->
+                </div>
+              <img src="<%= item.foto %>" class="card-img-top" alt="...">
+              <a href="/anuncios/<%= item.id %>" class="servicios-destacados__arrowright"><i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="card-body servicios-destacados__body">
+              <h5 class="card-title"><%= item.subcategoria.nombre %></h5>
+              <small class="text-capitalize"><%= item.usuario.nombres %> <%= item.usuario.apellidos %></small>
+              <p class="card-text"><%= item.titulo %></p>
+              <div class="servicios-destacados__caracter">
+                <span><i class="fas fa-map-marker-alt"></i> <%= item.departamento %></span>
+                <span><i class="far fa-file"></i> <%= item.experiencia %> Años</span>
+                <span>
+                  <i class="fas fa-star star--text"></i>
+                  <i class="fas fa-star star--text"></i>
+                  <i class="fas fa-star star--text"></i>
+                  <i class="fas fa-star star--text"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+              </div>
+            </div>
+            <a href="#" class="btn servicios-destacados__btnphone"><i class="fas fa-phone-alt mr-2"></i> <%= item.telefono %></a>
+          </div>
+        </div>
+      </div>
+      <% }) %> 
+    <% } %> 
+    </div>
+    <div class="d-flex justify-content-center">
+      <a href="/busquedaAll/1" class="btn btn-outline-secondary" style="padding: .2rem 2rem;">más</a>
+    </div>
+  </div>
+</section>
+
+<section class="planes-home">
+<div class="planes-home__title shadow-sm">
+  <h3>Anuncia tus oficios con cualquiera de nuestros planes (el pago es mensual)</h3>
+</div>
+<div class="container-fluid">
+  <div class="row justify-content-center row-content-plan">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 col-content-plan hvr-float">
+      <a href="#" class="text-decoration-none"> 
+        <div class="content-plan">
+          <span>Plan #1</span>
+          <span><sup>s/</sup>7.00</span>
+          <span>Mensual</span>
+          <span>del 1 a 4 meses</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 col-content-plan plan-recomendado hvr-float">
+      <a href="#" class="text-decoration-none"> 
+        <i class="fas fa-check-circle star--text"></i>
+        <div class="content-plan">
+          <span>Plan #2</span>
+          <span><sup>s/</sup>6.00</span>
+          <span>Mensual</span>
+          <span>del 4 a 6 meses</span>
+        </div>
+      </a>
+      <span class="star--text plan-recomendado__text">RECOMENDADO</span>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 col-content-plan hvr-float">
+      <a href="#" class="text-decoration-none"> 
+        <div class="content-plan">
+          <span>Plan #3</span>
+          <span><sup>s/</sup>5.00</span>
+          <span>Mensual</span>
+          <span>del 7 a 9 meses</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-2 col-xl-2 col-content-plan hvr-float">
+      <a href="#" class="text-decoration-none"> 
+        <div class="content-plan">
+          <span>Plan #4</span>
+          <span><sup>s/</sup>4.00</span>
+          <span>Mensual</span>
+          <span>del 10 a 10 meses</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- <section class="section-appmobile">
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-sm-12 col-md-6 col-lg-5 col-xl-5">
+      <div class="section-appmobile__content">
+        <h3>Encuentra el servicio desde tu mano</h3>
+        <p>100% gratis para todos los usuarios en las que podrán publicar sus servicios, postular a trabajos</p>
+        <img src="/img/app.png" alt="">
+      </div>
+    </div>
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+      <figure class="figure section-appmobile__figure">
+        <img src="/img/2020-oficios-phone.png" class="figure-img img-fluid rounded" alt="">
+      </figure>
+    </div>
+  </div>
+</div>
+</section> -->
+
+<section class="comunicate-home">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="comunicate-home__title">
+          <h3>Comunicate con nosotros</h3>
+          <hr>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="row justify-content-center">
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="comunicate-home__circle">
+              <span>
+                <i class="fab fa-whatsapp"></i>
+              </span>
+              <span>
+                980 427 842
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="comunicate-home__circle">
+              <span>
+                <i class="fas fa-phone-alt"></i>
+              </span>
+              <span>
+                980 427 842
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="comunicate-home__circle">
+              <span>
+                <i class="fas fa-envelope"></i>
+              </span>
+              <span>
+                atencion@2020oficios.com
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

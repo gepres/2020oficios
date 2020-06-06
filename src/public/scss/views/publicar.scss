@@ -1,0 +1,39 @@
+.container-publicar{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+.form-publicar{
+  width: 60%;
+}
+.label-locationservice{
+  display: block;
+    padding-left: 1rem;
+    width: 100%;
+}
+.imageContentAnuncio{
+  & img {
+    width: 100%;
+    object-fit: cover;
+    height: 350px;
+  }
+}
+
+
+// modal culqui
+
+.culqi-factura-pago{
+  width: 60px;
+  height: 60px;
+}
+
+// plan 
+
+.Pplan{
+  display: none;
+}
+.active-plan{
+  display: block !important;
+}

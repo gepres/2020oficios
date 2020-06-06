@@ -1,0 +1,20 @@
+//hacer todos los import  para compilar
+
+// config
+@import "config";
+
+
+//estilo componentes
+@import "components/navigation";
+@import "components/sidebar";
+@import "components/footer";
+
+//estilo componentes
+@import "views/home";
+@import "views/mostrar-oficio";
+@import "views/busqueda";
+@import "views/registro";
+@import "views/perfil";
+@import "views/perfil-editar";
+@import "views/panel";
+@import "views/publicar";

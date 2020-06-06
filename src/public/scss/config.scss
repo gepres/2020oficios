@@ -1,0 +1,146 @@
+//aqui se guardaran las varibles : colores , tipografia
+//import tipografia
+// @media screen and (max-width:600px){ 
+//   col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7
+
+
+//importar iconos
+
+
+//fuentes
+
+
+
+//colores
+$primary:#FBCC29;
+$second:#231F20;
+$gris01:#e1e1e1;
+$gris02:#e5e5e5;
+$gris00:#fcfcfc;
+$gris-dark01:#a2a2a2;
+$gris-dark03:#707070;
+$crema01:#fcf5e1;
+$crema02:#f7e0a2;
+$primary-dark:#DCA613;
+
+// 
+
+
+
+@function img($img) {
+  @return url('../img/#{$img}');
+}
+
+
+
+// configuraciones personalizadas
+.container-fluid{
+  padding-right: 35px !important;
+  padding-left: 35px !important
+}
+
+.position-comment-relative{
+  position: relative;
+}
+
+.star--text{
+  color: #ffc550;
+}
+.bg-primary{
+  background:#FBCC29 !important;
+}
+
+.text-sm-center{
+  @media screen and (max-width:600px){ 
+    text-align: center;
+  }
+}
+.margin-sm-0{
+  @media screen and (max-width:600px){ 
+    margin: 0 !important;
+  }
+}
+
+.display-sm-block{
+  @media screen and (min-width:951px){ 
+    display: none;
+  }
+  @media screen and (max-width:950px){ 
+    display: block;
+  }
+}
+
+.display-mo-block{
+  display: block;
+}
+.display-mo-none{
+  display: none;
+}
+
+
+// efectos
+/* Grow */
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+  transform: scale(1.1);
+}
+.hvr-float {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-float:hover, .hvr-float:focus, .hvr-float:active {
+  -webkit-transform: translateY(-8px);
+  transform: translateY(-8px);
+}
+
+
+
+/*** COMPONENTES **/
+.content-alerts{
+  position: absolute;
+  z-index: 10;
+  right: 34%;
+}
+
+
+.alertas {
+  max-width: 42rem;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 !important;
+}
+.alerta {
+  text-align: center;
+  font-size: 16px;
+  display: block;
+  color: white;
+  font-weight: 700;
+  padding: .5rem 4rem;
+}
+.error {
+  background-color: #EF5350;
+}
+.exito {
+  background-color: #66BB6A;
+}

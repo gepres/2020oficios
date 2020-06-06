@@ -1,0 +1,326 @@
+<div>
+  <div class="container container-publicar">
+    <h1>Publicar Anuncio</h1>
+    <form  class="form-publicar needs-validation" method="POST" action="/publicar-anuncio"  enctype="multipart/form-data" novalidate>
+      <input type="hidden" name="idpago" id="idpago" value="">
+      <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Categoría</label>
+            <select class="form-control" id="categoriaAnuncio" name="categoriaId" style="border-radius: 1.25rem;" required>
+              <option value="" disabled selected>Selecione categoría</option>
+              <% if(categorias.length > 0){ %>
+                <% categorias.forEach(item => { %> 
+                  <option value="<%= item.id %>" ><%= item.nombre %></option>
+                <% }) %> 
+              <% } %> 
+            </select>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Sub Categoría</label>
+            <select class="form-control" id="subcategoriaAnuncio" name="subcategoriaId" style="border-radius: 1.25rem;" required>
+            </select>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <label class="label-locationservice">Donde brinda el servicio</label>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control" name="departamento" id="departamento"  style="border-radius: 1.25rem;" required>
+              <option value="" selected disabled>Departamento</option>
+            </select>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control" name="provincia" id="provincia" style="border-radius: 1.25rem;" required>
+              <option value="" selected disabled>Provincia</option>
+            </select>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control" name="distrito" id="distrito" style="border-radius: 1.25rem;" required>
+              <option value="" selected  disabled>Distrito</option>
+            </select>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Nombre del servicio</label>
+            <input type="text" class="form-control" name="titulo" placeholder="Nombre del servicio" required>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Años de experiencia</label>
+            <div class="input-group mb-3">
+              <input type="Number" name="experiencia" class="form-control" required>
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">Años</span>
+              </div>
+              <div class="invalid-feedback">
+                El campo es requerido.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" class="form-control" name="telefono" placeholder="" required>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Correo</label>
+            <input type="text" class="form-control" name="email" placeholder="" required>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>Foto</label><small class="text-danger ml-4">obligatorio*</small>
+            <div class="content-file">
+              <input
+                type="file"
+                accept="image/png, image/jpg ,image/jpeg"
+                name="imagen"
+                id="imagespublicar" class="inputfile inputfile-6"
+                required
+              >
+              <label for="imagespublicar" class="content-file__label"><i class="fas fa-cloud-upload-alt mr-2"></i>subir</label>
+            </div>
+            <div id="imageContentAnuncio" class="imageContentAnuncio">
+              <img src="" id="imageAnuncio" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="form-control" name="descripcion"  rows="4" required></textarea>
+            <div class="invalid-feedback">
+              El campo es requerido.
+            </div>
+          </div>
+        </div>
+        <div id="planPagado" class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          
+        </div>
+        <div class="col-12 mt-4">
+          <button type="button" class="btn btn-success col-5" data-toggle="modal" data-target="#culqiModal" id="tipoPago">pagar culqi
+            <span id="loadingbtnProcesoPago" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          </button>
+          <button class="btn btn-primary col-5" type="submit" style="display: none" id="btnpublicar">publicar</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Modal pagar culqi -->
+<div class="modal fade" id="culqiModal" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+
+  
+        <div id="pay-invoice">
+
+          <div class="card-body">
+
+            <div class="card-title">
+              <h3 class="text-center">Medio de Pago por <img src="/img/logoculqi.png" class="culqi-factura-pago" alt=""></h3>
+              <span class="text-primary">
+                <strong class="u-text-animation u-text-animation--typing"></strong>
+               </span>
+            </div>
+
+            <hr>
+            <div id="msgAlerta" style="display:none;">
+              
+            </div>
+            
+
+            <form action="" method="POST" id="pagoAnuncio" novalidate="novalidate">
+              <div id="formCulqui">                             
+              </div>
+              <input type="hidden" value="<%= datosUser.codigo_culqi %>" id="codigo_culqi" >
+              <input type="hidden" value="<%= datosUser.id %>" id="iduser" >
+              <input type="hidden" name="amount" id="amount" value="">
+              <input type="hidden" name="plan" id="plan" value="">
+              <input type="hidden" name="tiempo_mes" id="tiempo_mes" value="0">
+              
+              
+              <!-- <input type="hidden" name="pago" id="pago" value="0"> -->
+              <div class="form-group">
+                <div class="row">
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 mb-3">
+                    
+                      <select class="form-control"  id="planSelect"  required style="border-radius: 1.25rem;">
+                        <option value="">Selecione Plan</option>
+                        <option value="plan-1">Plan 1</option>
+                        <option value="plan-2">Plan 2</option>
+                        <option value="plan-3">Plan 3</option>
+                        <option value="plan-4">Plan 4</option>
+                      </select>
+                  </div>
+                  <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 contentPublicar-plan" id="contentPublicar-plan" style="display: flex; justify-content: center;">
+
+                    <span href="#" class="text-decoration-none Pplan plan-1"> 
+                      <div class="content-plan">
+                        <span>Plan #1</span>
+                        <span><sup>s/</sup>7.00</span>
+                        <span>Mensual</span>
+                        <span> 3 meses</span>
+                      </div>
+                    </span>
+
+                    <span href="#" class="text-decoration-none Pplan plan-2"> 
+                      <div class="content-plan">
+                        <span>Plan #2</span>
+                        <span><sup>s/</sup>6.00</span>
+                        <span>Mensual</span>
+                        <span> 6 meses</span>
+                      </div>
+                    </span>
+
+                    <span href="#" class="text-decoration-none Pplan plan-3"> 
+                      <div class="content-plan">
+                        <span>Plan #3</span>
+                        <span><sup>s/</sup>5.00</span>
+                        <span>Mensual</span>
+                        <span> 9 meses</span>
+                      </div>
+                    </span>
+                    
+                    <span href="#" class="text-decoration-none Pplan plan-4"> 
+                      <div class="content-plan">
+                        <span>Plan #4</span>
+                        <span><sup>s/</sup>4.00</span>
+                        <span>Mensual</span>
+                        <span> 12 meses</span>
+                      </div>
+                    </span>
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cc-number" class="control-label mb-1">Número de tarjeta</label>
+                <div class="input-group">
+                  <input id="cc-number" name="cc-number" type="tel" placeholder="4321 1234 5678 9876"  class="form-control cc-number identified visa" required autocomplete="off">
+                    <div class="input-group-append">
+                    <span class="input-group-text"><i id="imgCard" class="far fa-credit-card"></i></span>
+                  </div>
+                </div>
+                <span class="invalid-feedback">Ingrese un número de tarjeta válido de 12 a 16
+                  dígitos</span>
+                  <p id="typeCard"></p>
+              </div>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="cc-exp" class="control-label mb-1">Expiración</label>
+                    <input id="cc-exp" name="cc-exp" type="tel" class="form-control cc-exp" required placeholder="MM / YYYY" autocomplete="cc-exp">                    
+                    <span class="invalid-feedback">Ingrese la fecha de vencimiento</span>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="x_card_code" class="control-label mb-1">CVV</label>
+                  <div class="input-group">
+                    <input id="x_card_code" name="cc-code" type="text" class="form-control"	required placeholder="123">
+                    <span class="invalid-feedback order-last">Ingrese el código de 3 dígitos en la parte
+                      posterior</span>
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fa fa-question-circle fa-lg" data-toggle="popover"
+                          data-container="body" data-html="true" data-title="CVV"
+                          data-content="<div class='text-center one-card'>Ingrese el código de 3 dígitos en la parte posterior..<div class='visa-mc-cvc-preview'></div></div>"
+                          data-trigger="hover"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="x_zip" class="control-label mb-1">Email</label>
+                <input id="x_zip" name="cc_zip" type="email" class="form-control" placeholder="micorreo@miempresa.com"  required autocomplete="x_zip">
+                <span class="invalid-feedback">Ingrese un Email correcto</span>
+              </div>
+              <div class="text-right">
+                <p class="mt-4" style="font-size: smaller;">Al pagar acepta nuestros 
+                  <a href="#" target="_blank">Términos y Condiciones</a> y 
+                  <a href="#" target="_blank">Políticas de Privacidad</a>
+                </p>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button id="payment-button" class="btn btn-info">
+                  <i class="fa fa-lock fa-lg"></i>&nbsp;
+                  <span id="payment-button-amount">Pagar</span>
+                  <span id="loadingbtnPagar" class="spinner-border spinner-border-sm" role="status" aria-hidden="true" style="display:none ;"></span>
+                </button>
+                <button type="submit" id="btn_pagar" class="btn btn-info" style="display: none">pago</button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn btn-primary">Pagar</button>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+<!-- modal alert publicar  -->
+<div class="modal fade" id="publicarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white" style="border-bottom: 0;">
+        <h5 class="modal-title">El pago se realizo con exito,<br> Precione Publicar para terminar con el Anuncio.</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div

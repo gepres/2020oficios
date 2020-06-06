@@ -1,0 +1,177 @@
+<div class="busqueda bg-primary">
+  <div class="container">
+    <div class="row busqueda__input-row">
+      <div class="col-12 busqueda__input-col">
+        <div class="busqueda__input-content">
+          <h5 class="busqueda__input-title">Estas buscando</h5>
+          <div class="input-group busqueda__input-group">
+              <input type="text" class="form-control" value="<%= consulta  %>" placeholder="Buscar Servicio" aria-label="Recipient's username" aria-describedby="button-addon2">  
+            <div class="input-group-append">
+              <button class="btn busqueda__btn-buscar" type="button" id="button-addon2">x</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="cb">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+        <div class="cb-filtro">
+          <h6 class="cb-filtro__title">FILTROS</h6>
+          <div class="input-group input-group-sm mb-3 cb-filtro__content">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+            </div>
+            <input type="text" class="form-control" id="inputVbLugar" placeholder="Lugar">
+          </div>
+          <div class="input-group input-group-sm mb-3  cb-filtro__content">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="far fa-file"></i></span>
+            </div>
+            <input type="text" class="form-control" id="inputVbExperiencia" placeholder="Años de experiencia">
+          </div>
+          <!-- <div class="input-group input-group-sm mb-3  cb-filtro__content">
+            <div class="input-group-prepend">
+              <span class="input-group-text"><i class="fas fa-star"></i></span>
+            </div>
+            <input type="text" class="form-control" placeholder="Valorización">
+          </div> -->
+          <div class="cb-filtro__btn">
+            <button id="btnVb" class="btn">Aplicar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-12 col-cb-rightheader">
+              <span>Se han encontrado 10 avisos</span>
+              <div>
+                <span>ordenar por :</span>
+                <div class="btn-group">
+                  <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Más Recientes
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Más Votados</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="row cb-custom">
+                <% if(anuncios.length > 0){ %>
+                  <% anuncios.forEach(item => { %> 
+                    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
+                      <div class="content-servicios">
+                        <div class="card shadow-sm ">
+                          <div class="servicios-destacados__header">
+                            <div class="servicios-destacados__codelike">
+                              <span class="servicios-destacados__codelike-span1"><%= item.codigo %></span>
+                              <!-- <span class="servicios-destacados__codelike-span2">
+                                <i class="far fa-heart"></i>
+                              </span> -->
+                            </div>
+                            <img src="<%= item.foto %>" class="card-img-top" alt="...">
+                          <a href="/anuncios/<%= item.id %>" class="servicios-destacados__arrowright"><i class="fas fa-arrow-right"></i></a>
+                          </div>
+                          <div class="card-body servicios-destacados__body">
+                            <h5 class="card-title"><%= item.subcategoria.nombre %></h5>
+                            <small class="text-capitalize"><%= item.usuario.nombres %> <%= item.usuario.apellidos %></small>
+                            <p class="card-text"><%= item.titulo %></p>
+                            <div class="servicios-destacados__caracter">
+                              <span><i class="fas fa-map-marker-alt"></i> <%= item.departamento %></span>
+                              <span><i class="far fa-file"></i> <%= item.experiencia %> Años</span>
+                              <span>
+                                <i class="fas fa-star star--text"></i>
+                                <i class="fas fa-star star--text"></i>
+                                <i class="fas fa-star star--text"></i>
+                                <i class="fas fa-star star--text"></i>
+                                <i class="fas fa-star"></i>
+                              </span>
+                            </div>
+                          </div>
+                          <a href="#" class="btn servicios-destacados__btnphone"><i class="fas fa-phone-alt mr-2"></i><%= item.telefono %></a>
+                        </div>
+                      </div>
+                    </div>
+                  <% }) %> 
+                <% }else{ %>
+                  <span>No hay resultado</span>
+                <% } %>  
+              </div>
+            </div>
+            <div class="col-12" style="justify-content: center;display: flex;padding: 1rem">
+              <!-- pagination -->
+              <% if(pages > 0) { %> 
+                <nav style="display: inline-block;">
+                  <ul class="pagination">
+                    <!-- FIRST ITEM -->
+                    <% if(current == 1) { %>
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#">Primero</a>
+                      </li>
+                    <% } else { %>
+                      <li class="page-item">
+                        <a class="page-link" href="/busquedaAll/1">Anterior</a>
+                      </li>
+                    <% } %>
+                    <!-- ITEMS  -->
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if(i !== 1) { %>
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#">...</a>
+                      </li>
+                    <% } %>
+                    <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                      <% if(i == current) { %>
+                        <li class="page-item active">
+                          <a class="page-link" href="<%= i %>">
+                            <%= i %>
+                          </a>
+                        </li>
+                      <% } else { %>
+                        <li class="page-item">
+                          <a class="page-link" href="/busquedaAll/<%= i %>">
+                            <%= i %>
+                          </a>
+                        </li>
+                      <% } %>
+                      <% if (i == Number(current) + 4 && i < pages) { %>
+                         <li class="page-item disabled">
+                           <a class="page-link" href="#">...</a>
+                         </li>
+                      <% } %>
+                    <% } %>
+                    <!-- LAST ITEM -->
+                    <% if(current == pages) { %>
+                      <li class="page-item disabled">
+                        <a class="page-link" href="#">
+                          Ultimo
+                        </a>
+                      </li>
+                    <% } else { %>
+                      <li class="page-item">
+                        <a class="page-link" href="/busquedaAll/<%= pages %>">
+                          Siguiente
+                        </a>
+                      </li>
+                    <% } %>
+                  </ul>
+                </nav>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

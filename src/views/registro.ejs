@@ -1,0 +1,46 @@
+<div class="login">
+  <div class="row m-0 d-flex justify-content-center">
+    <!-- <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 login-bg"></div> -->
+    <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 login-container">
+        <div class="row justify-content-center row-register">
+          <div class="col-12 login-title">
+           <h2>CREAR UNA CUENTA</h2>
+            <span>¿ tienes una cuenta ? <a href="/ingresar">inicia sesión</a></span>
+          </div>
+          <div class="col-12 login-content">
+            <form method="POST" action="/api/usuario/registro">
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="nombres" placeholder="Nombre">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="apellidos" placeholder="Apellido">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="Correo eletrónico">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="Contraseña">
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-group">
+                    <input type="password" class="form-control" name="confirmar" placeholder="Confirmar">
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">REGISTRAR</button>
+              <span class="text-right form-text text-muted mt-3"> Al registrarte aceptas nuestros<a href="#" class=" text-right ml-3">terminos y condiciones</a></span>
+            </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

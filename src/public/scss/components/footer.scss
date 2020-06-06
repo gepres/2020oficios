@@ -1,0 +1,37 @@
+.footer{
+  background: $primary;
+  padding: 2rem 0;
+  &-row{
+    justify-content: space-between;
+    align-items: center;
+  }
+  &-img{
+    width: 130px;
+    @media screen and (max-width:600px){ 
+      margin-bottom: 1rem;
+    }
+  }
+  &-copy{
+    color: #fff;
+  }
+  &-redes{
+    display: flex;
+    justify-content: flex-end;
+    @media screen and (max-width:900px){
+      justify-content: center;
+      margin-top: 1rem;
+     }
+    a {
+      padding: .4rem 0;
+      width: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:#fff;
+      color: $primary;
+      border-radius: 10px;
+      margin-left: .6rem;
+    }
+
+  }
+}

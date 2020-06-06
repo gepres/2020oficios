@@ -1,0 +1,146 @@
+<div>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 mo-sub">
+        <span>Buscaste:</span>
+        <span><%= anuncio.subcategoria.nombre %></span>
+      </div>
+
+      <div class="col-12">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+            <figure class="mo-image">
+              <div class="mo__codelike">
+                <input value="<%= anuncio.id %>" id="idpost" type="hidden">
+                <% if(locals.usuario.user){ %>
+
+
+                  <% const arrayLikes = anuncio.likes.split(',') %> 
+                  <% const useridd = `${locals.usuario.user.id}` %> 
+                  <% if(arrayLikes.includes(useridd)){ %>
+
+                    <input value="<%= locals.usuario.user.id %>" id="iduser" type="hidden">
+                    <span id="moUnlike"><i class="fas fa-heart"></i></span>
+
+
+                    <div id="moSpinner" class="spinner-border display-mo-none" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+
+
+                  <% }else{ %>
+                    <input value="<%= locals.usuario.user.id %>" id="iduser" type="hidden">
+                    <span id="moLike"><i class="far fa-heart"></i></span>
+                    <div id="moSpinner" class="spinner-border display-mo-none" role="status">
+                      <span class="sr-only">Loading...</span>
+                    </div>
+                  <% } %> 
+                  
+                  
+                <% }else{ %> 
+                <span id="moLikeNoAuth" data-toggle="modal" data-target="#exampleModal"><i class="far fa-heart"></i></span>
+                <% } %> 
+              </div>
+              <img src="<%= anuncio.foto %>" class="img-fluid" alt="">
+            </figure>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+            <div class="mo-content">
+              <span class="mo-content__code"><%= anuncio.codigo %></span>
+              <h5 class="mo-content__title"><%= anuncio.titulo %></h5>
+              <span class="mo-content__star">
+                <i class="fas fa-star star--text"></i>
+                <i class="fas fa-star star--text"></i>
+                <i class="fas fa-star star--text"></i>
+                <i class="fas fa-star star--text"></i>
+                <i class="fas fa-star"></i>
+              </span>
+              <a href="/perfil/<%= anuncio.usuario.id %> " class="mo-content__user">
+                <% if(anuncio.usuario.foto){ %> 
+                <img src="<%= anuncio.usuario.foto %> " alt="">
+                <% }else{ %>
+                  <img src="/img/gasfitero.jpg" alt="">
+                <% } %>  
+                <span><%= anuncio.usuario.nombres %> <%= anuncio.usuario.apellidos %></span>
+                </a>
+              <small class="mo-content__description">Descripción</small>
+              <p class="mo-content__description-p"><%= anuncio.descripcion %></p>
+              <div class="mo-content__caracter">
+                <span class="mo-content__caracter__ubi"><i class="fas fa-map-marker-alt mr-2"></i> <%= anuncio.departamento %></span>
+                <span class="mo-content__caracter__year"><i class="far fa-file mr-2"></i> <%= anuncio.experiencia %> Años</span>
+                <span class="mo-content__caracter__phone"><i class="fas fa-phone-alt mr-2"></i> <%= anuncio.telefono %></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="mo-content-btn">
+              <button class="btn"><i class="fas fa-share-alt mr-2"></i> Compartir</button>
+               <button class="btn">Contactar</button>
+            </div>
+          </div>       
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="mo-main">
+    <div class="container">
+      <div class="mo-main__star">
+        <span class="mo-main__star-text">¿ haz contratado el servicio de este usuario? califica su servicio</span>
+        <span class="mo-main__star-star"> 
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+        </span>
+      </div>
+      <!-- <div class="row margin-sm-0 justify-content-center">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7">
+         <h6 class="mo-main__comentarios__title">Comentarios</h6>
+         <div class="mo-main__comentarios">
+
+            <div class="mo-main__comentario">
+              <div class="mo-main__comentario__header">
+                <span>
+                  <img src="/img/gasfitero.jpg" alt="">
+                  <span>Juan Manuel Vargas</span>
+                </span>
+                <span>hace 2 dias</span>
+              </div>
+              <p class="mo-main__comentario__p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores magnam nulla adipisci, ad consequatur omnis quas perspiciatis ipsum nemo ex maxime, voluptates nam harum velit inventore explicabo soluta voluptate rerum?</p>
+              <hr>
+            </div>
+    
+         </div>
+        </div>
+      </div> -->
+
+      <!-- <div class="row margin-sm-0 justify-content-center">
+        <div class="col-12 col-sm-12 col-md-10 col-lg-7 col-xl-7 mo-main-comentar">
+          <textarea></textarea>
+          <div class="mo-main-comentar__btn">
+            <button class="btn">comentar</button>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+
+<!-- modal alert  -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white" style="border-bottom: 0;">
+        <h5 class="modal-title">Ingrese para Guardar Anuncio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div

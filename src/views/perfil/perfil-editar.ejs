@@ -1,0 +1,196 @@
+<div class="bg-perfil">
+  <div class="container">
+    <div class="row row-perfil">
+      <div class="col-12">
+        <h4>EDITAR PERFIL</h4>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 mb-4">
+        <div class="div">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="perfilEdit-part1">
+                <% if(user.foto){ %>
+                  <img src="<%= user.foto %>" alt="">
+                <% }else{ %>
+                  <img src="/img/user-default.png" alt="">
+                <% } %>    
+                <span><%=  user.nombres %> </span>
+                <form action="/perfil-imagen" id="formphotoperfil" method="POST" enctype="multipart/form-data">
+                  <div class="content-file">
+                    <input
+                      type="file"
+                      accept="image/png, image/jpg ,image/jpeg"
+                      name="imagen"
+                      id="imageProfile" class="inputfile inputfile-6"
+                    >
+                    <label for="imageProfile" class="content-file__label"><i class="fas fa-cloud-upload-alt mr-2"></i>Cambiar</label>
+                  </div>
+                </form>
+                <!-- <button class="btn text-primary"><i class="fas fa-cloud-upload-alt mr-3"></i>Cambiar</button> -->
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="perfilEdit-part2">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                  <li class="nav-item-ep nav-item">
+                    <a class="nav-link active nav-link-ep" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Información Básica</a>
+                  </li>
+                  <li class="nav-item-ep nav-item">
+                    <a class="nav-link nav-link-ep" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Conóceme</a>
+                  </li>
+                  <li class="nav-item-ep nav-item">
+                    <a class="nav-link nav-link-ep disabled" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">Cambiar Contraseña</a>
+                  </li>
+                  <!-- <li>
+                    <a href="#" >Información Básica</a></li>
+                  <li>
+                    <a href="#" >Sobre mi</a></li>
+                  <li><a href="#">Conóceme</a></li>
+                  <li><a href="#">Redes Sociales</a></li>
+                  <li><a href="#">Cabecera de perfil</a></li> -->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9 mb-4">
+       <div class="perfilEdit-container">
+        <div class="tab-content" id="pills-tabContent">
+
+
+          <div class="tab-pane one-tabpanel fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
+            <form action="/perfil-editar" method="POST">
+
+            <h5 class="ep-title text-uppercase">
+              <i class="fas fa-user mr-4"></i> <span class="font-weight-bold">Datos personales</span>
+            </h5>
+
+            <div class="ep-content-form">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Nombres</label>
+                    <input type="text" class="form-control" name="nombres" value="<%=  user.nombres %>">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Apellidos</label>
+                    <input type="text" class="form-control" name="apellidos" id="" value="<%=  user.apellidos %>">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-group">
+                    <label>Correo electrónico</label>
+                    <input type="text" class="form-control" id="" disabled value="<%=  user.email %>">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h5 class="ep-title text-uppercase">
+              <i class="fas fa-user-check mr-4"></i> <span class="font-weight-bold">Verificación de usuario</span>
+            </h5>
+
+            <div class="ep-content-form">
+              <div class="row">
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Genero</label>
+                    <select class="form-control" name="genero" style="border-radius: 1.25rem;">
+                      <option disabled selected>Genero</option>
+                      <option value="masculino"  <%= (user.sexo === 'masculino') ? 'selected' : '' %>
+                        >Masculino</option>
+                      <option value="femenino"  <%= (user.sexo === 'femenino') ? 'selected' : '' %> >
+                        femenino</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="" value="<%=  user.fecha_nacimiento %>">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Tipo de Documento</label>
+                    <select class="form-control" name="tipo_documento" style="border-radius: 1.25rem;">
+                      <option disabled selected>Documento</option>
+                      <option value="DNI" <%= (user.tipo_documento === 'DNI') ? 'selected' : '' %>  >DNI</option>
+                      <option value="RUC" <%= (user.tipo_documento === 'RUC') ? 'selected' : '' %> >RUC</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>N° de Documento</label>
+                    <input type="text" class="form-control" name="num_documento" value="<%=  user.num_documento %>" placeholder="71234576" name="" id="">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Teléfono</label>
+                    <input type="tel" class="form-control" name="telefono" value="<%=  user.telefono %>" placeholder="345 3256" name="" id="">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                  <div class="form-group">
+                    <label>Celular</label>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text bg-white">+51</span>
+                      </div>
+                      <input type="tel" class="form-control" name="celular" value="<%=  user.celular %>" placeholder="945 234 324" >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 text-center mt-4">
+                  <button class="btn btn-primary" style="border-radius: 35px;">Guardar</button>
+                </div>
+              </div>
+            </div>
+            
+            </form> 
+          </div>
+
+
+
+
+
+          <div class="tab-pane fade one-tabpanel" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
+            <form action="/perfil-editardescr" method="POST">
+
+              <h5 class="ep-title text-uppercase">
+                <i class="far fa-comment-dots mr-3"></i> <span class="font-weight-bold">Conóceme</span>
+              </h5>
+  
+              <div class="ep-content-form">
+                <div class="row">
+                  <div class="col-12">
+                    <p class="text-secondary">Escribe sobre ti, todo lo que quieras que los demás usuarios sepan de ti, de a conocer toda tu descripción</p>
+                    <div class="form-group">
+                      <label class="text-secondary font-weight-bold">Descripción</label>
+                      <textarea class="form-control" rows="4" name="descripcion"><%=  user.descripcion %></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12 text-center mt-4">
+                    <button class="btn btn-primary" style="border-radius: 35px;">Guardar</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+          </div>
+
+          <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">
+            cambiar
+          </div>
+
+        </div>
+       </div>
+      </div>
+    </div>
+  </div>
+</div>

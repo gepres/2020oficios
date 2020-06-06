@@ -1,0 +1,60 @@
+.collapse-navigation-menu{
+  justify-content: flex-end;
+}
+.navigation{
+  background: $primary;
+  padding: 10px 80px;
+  @media screen and (max-width:600px){
+    padding: 10px 20px;
+  }
+  & .img {
+    & img {
+      width: 125px;
+      height: 50px;
+    }
+  }
+  &-menu{
+    & a {
+      border: 1px solid;
+      padding: .3rem .8rem;
+      border-radius: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: .3s;
+      margin-left: 2.5rem;
+      &:hover{
+        background: rgba($primary-dark,.4 );
+      }
+    }
+  }
+}
+
+.menu-publicar{
+  color: $second;
+  align-self: center;
+  &:hover{
+    color: $second;
+  }
+}
+.menu-photo{
+  border: none !important;
+  padding: 0 !important;
+  & img {
+    width: 45px;
+    height: 45px;
+    border-radius:50% ;
+    object-fit: cover;
+  }
+}
+.menu-cerrarSession{
+  border: none !important;
+  padding: 0 !important;
+  align-self: center;
+  color: red;
+}
+.menu-ingresar{
+  color: #fff;
+  &:hover{
+    color: #fff;
+  }
+}

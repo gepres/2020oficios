@@ -1,0 +1,27 @@
+<div class="bg-white border-right" id="sidebar-wrapper">
+  <div class="sidebar-heading">
+    <button class="btn" id="menu-btn-toggle"><i class="fas fa-long-arrow-alt-right"></i></button>
+  </div>
+  <div class="bg-light sidebar-header">
+    <% if(locals.usuario.user.foto){ %> 
+      <img src="<%- locals.usuario.user.foto %>"  alt="">
+    <% }else{ %>
+      <img src="/img/user-default.png"  alt="">
+    <% } %> 
+    <div class="sidebar-header__content">
+      <h4 class="text-uppercase"><%= locals.usuario.user.nombres %> <%= locals.usuario.user.apellidos %></h4>
+      <small><%= locals.usuario.user.email %></small>
+    </div>
+  </div>
+  <div class="sidebar-list">
+    <a href="/panel" class=""><i class="fas fa-tachometer-alt mr-3"></i> Mi panel</a>
+    <a href="/publicar" class=""><i class="fas fa-share-alt mr-3"></i> Publicar</a>
+    <a href="/perfil/<%= locals.usuario.user.id %> " class=""><i class="fas fa-user-circle mr-3"></i> Mi Perfil</a>
+    <!-- <a href="#" class=""><i class="fas fa-bell mr-3"></i> Notificaciones</a> -->
+  </div>
+  <hr style="width: 90%;">
+  <div class="sidebar-list">
+    <a href="/editar-perfil" class="disabled"><i class="fas fa-lock mr-3"></i> Cambiar Contraseña</a>
+    <a href="/cerrar-sesion" class=""><i class="fas fa-key mr-3"></i> Cerrar Sesión</a>
+  </div>
+</div>

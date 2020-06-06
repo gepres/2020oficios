@@ -1,0 +1,104 @@
+<div class="bg-perfil">
+  <div class="container-fluid">
+    <div class="row row-perfil">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 mb-4">
+        <div class="div">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="perfil-part1">
+                <!-- <img src="/img/user-default.png" alt=""> -->
+                <% if(user.foto){ %>
+                  <img src="<%= user.foto %>" alt="">
+                <% }else{ %>
+                  <img src="/img/user-default.png" alt="">
+                <% } %>
+                <h2 class="text-uppercase"><%= user.nombres %> <%= user.apellidos %></h2>
+                <span class="perfil-part1__email"><%= user.email %></span>
+                <span class="perfil-part1__verificado">Usuario verificado</span>
+                <button class="btn" disabled><i class="fas fa-flag mr-3"></i>Reportar usuario</button>
+              </div>
+            </div>
+            <!-- <div class="col-12">
+              <div class="perfil-part2">
+                <span><i class="fas fa-graduation-cap mr-3"></i> Diseñador Grafico</span>
+                <span><i class="fas fa-map-marker-alt mr-4"></i> San Juan de Lurigancho</span>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+        <div>
+          <div class="row">
+            <!-- <div class="col-12">
+              <div class="perfil-imgcover">
+                <figure>
+                  <img src="/img/cover-default.jpeg" alt="">
+                </figure>
+              </div>
+            </div>  -->
+
+            <div class="col-12">
+              <div class="perfil-content-title">
+                <span>Sobre Mi</span>
+                <hr>
+              </div>
+              <div class="perfil-content-description">
+                <span>Conocemé</span>
+                <p><%=  user.descripcion %> </p>
+              </div>
+              <hr>
+              <div class="perfil-content-anuncios">
+                <span>Mis Anuncios</span>
+                <div>
+                  <div class="row mb-4">
+                    <% if(anuncios.length > 0){ %> 
+                      <% anuncios.forEach(item => { %> 
+                        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 mb-4">
+                          <div class="content-servicios">
+                            <div class="card" style="border-radius: 15px;">
+                              <div class="servicios-destacados__header">
+                                <div class="servicios-destacados__codelike">
+                                  <span class="servicios-destacados__codelike-span1"><%= item.codigo %></span>
+                                  <!-- <span class="servicios-destacados__codelike-span2">
+                                    <i class="far fa-heart"></i>
+                                  </span> -->
+                                </div>
+                                <img src="<%= item.foto %>" class="card-img-top" alt="...">
+                                <a  href="/anuncios/<%= item.id %>" class="servicios-destacados__arrowright"><i class="fas fa-arrow-right"></i></a>
+                              </div>
+                              <div class="card-body servicios-destacados__body">
+                                <h5 class="card-title"><%= item.subcategoria.nombre %></h5>
+                                <small class="text-capitalize"><%= item.usuario.nombres %> <%= item.usuario.apellidos %></small>
+                                <p class="card-text"><%= item.titulo %></p>
+                                <div class="servicios-destacados__caracter">
+                                  <span><i class="fas fa-map-marker-alt"></i> <%= item.departamento %></span>
+                                  <span><i class="far fa-file"></i> <%= item.experiencia %> Años</span>
+                                  <span>
+                                    <i class="fas fa-star star--text"></i>
+                                    <i class="fas fa-star star--text"></i>
+                                    <i class="fas fa-star star--text"></i>
+                                    <i class="fas fa-star star--text"></i>
+                                    <i class="fas fa-star"></i>
+                                  </span>
+                                </div>
+                              </div>
+                              <a href="#" class="btn servicios-destacados__btnphone"><i class="fas fa-phone-alt mr-2"></i> <%= item.telefono %></a>
+                            </div>
+                          </div>
+                        </div>
+                      <% }) %>
+                      <% }else{ %>
+                        <span>No tiene Anuncios.</span>
+                      <% } %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

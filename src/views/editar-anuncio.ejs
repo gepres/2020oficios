@@ -1,0 +1,123 @@
+<div>
+  <div class="container container-publicar">
+    <h1>Editar Anuncio</h1>
+    <form  class="form-publicar" method="POST" action="/editar-anuncio/<%= anuncio.id  %>"  enctype="multipart/form-data">
+      <input type="hidden" name="idpago" id="idpago" value="<%= anuncio.idpago  %>">
+      <div class="row">
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Categoria</label>
+            <select class="form-control" id="categoriaAnuncio" name="categoriaId" style="border-radius: 1.25rem;">
+              <option disabled selected>Categoria</option>
+              <% if(categorias.length > 0){ %>
+                <% categorias.forEach(item => { %> 
+                  <option value="<%= item.id %>" <%= (anuncio.categoriaId === item.id) ? 'selected' : '' %> ><%= item.nombre %></option>
+                <% }) %> 
+              <% } %> 
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Sub Categoria</label>
+            <select class="form-control" id="subcategoriaAnuncio" name="subcategoriaId" style="border-radius: 1.25rem;">
+              <option value="<%= anuncio.subcategoriaId  %>" selected><%= anuncio.subcategoria.nombre %> </option>
+            </select>
+          </div>
+        </div>
+
+        <label class="label-locationservice">Donde brinda el servicio</label>
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control" name="departamento" id="departamento" style="border-radius: 1.25rem;">
+              <option value="<%= anuncio.departamento  %>" selected><%= anuncio.departamento  %></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control"  name="provincia" id="provincia" style="border-radius: 1.25rem;">
+              <option value="<%= anuncio.provincia  %>" selected ><%= anuncio.provincia  %></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+          <div class="form-group">
+            <select class="form-control" name="distrito" id="distrito" style="border-radius: 1.25rem;">
+              <option value="<%= anuncio.distrito  %>" selected ><%= anuncio.distrito  %></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Nombre del servicio</label>
+            <input type="text" value="<%= anuncio.titulo  %>" class="form-control" name="titulo" placeholder="Nombre del servicio">
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Años de experiencia</label>
+            <div class="input-group mb-3">
+              <input type="Number" value="<%= anuncio.experiencia  %>" name="experiencia" class="form-control" >
+              <div class="input-group-append">
+                <span class="input-group-text" id="basic-addon2">Años</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="tel" class="form-control" value="<%= anuncio.telefono  %>" name="telefono" placeholder="">
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Correo</label>
+            <input type="text" class="form-control" value="<%= anuncio.email  %>" name="email" placeholder="">
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label>Foto</label>
+            <div class="content-file">
+              <input
+                type="file"
+                accept="image/png, image/jpg ,image/jpeg"
+                name="imagen"
+                id="imagespublicar" class="inputfile inputfile-6"
+              >
+              <label for="imagespublicar" class="content-file__label"><i class="fas fa-cloud-upload-alt mr-2"></i>subir</label>
+            </div>
+            <div id="imageContentAnuncio" class="imageContentAnuncio">
+              <img src="<%= anuncio.foto  %>" id="imageAnuncio" alt="">
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="form-group">
+            <label>Descripción</label>
+            <textarea class="form-control" name="descripcion"  rows="4">
+              <%= anuncio.descripcion  %> 
+            </textarea>
+          </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-between">
+          <!-- <button class="btn btn-success" disabled>pagar culqi</button> -->
+          <button class="btn btn-primary">Guardar</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>

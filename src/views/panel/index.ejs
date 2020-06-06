@@ -1,0 +1,134 @@
+<div class="bg-perfil">
+  <div class="container-fluid">
+    <div class="row row-perfil">
+      <div class="col-12 col-sm-12 col-md-12 col-lg-3 col-xl-3 mb-4">
+        <div class="div">
+          <div class="row">
+            <div class="col-12 mb-4">
+              <div class="panel-part1">
+                <% if(user.foto){ %>
+                  <img src="<%= user.foto %>" alt="">
+                <% }else{ %>
+                  <img src="/img/user-default.png" alt="">
+                <% } %>  
+                <h2 class="text-uppercase"><%= user.nombres %> <%= user.apellidos %></h2>
+                <span class="panel-part1__email"><%= user.email %></span>
+                <a href="/perfil-editar" class="btn btn-primary">Editar Perfil</a>
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="panel-part2">
+                <a href="#"><i class="fas fa-user-circle mr-3"></i> Mi Perfil</a>
+                <a href="#"><i class="far fa-credit-card mr-3"></i> Metodo de pago</a>
+                <a href="#"><i class="fas fa-percentage mr-4"></i> Promociones</a>
+              </div>
+            </div>
+            <div class="col-12 mb-4">
+              <div class="panel-part3">
+                <div class="panel-part3__title">
+                  <h5>Invitar a tus amigos</h5>
+                  <hr>
+                </div>
+                <div class="panel-part3__content">
+                <span><i class="fas fa-envelope-open-text"></i></span>
+                 <p> Invita u correo a tus amigos a que conoscan nuestra plataforma y puedan obtener todos los beneficios.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-12 col-md-12 col-lg-9 col-xl-9">
+        <div>
+          <ul class="nav nav-pills pills-panel mb-3" id="pills-tab" role="tablist">
+            
+            <li class="nav-item">
+              <a class="nav-link active" id="pills-one-tab" data-toggle="pill" href="#pills-one" role="tab" aria-controls="pills-one" aria-selected="true">Anuncios Publicados</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" id="pills-two-tab" data-toggle="pill" href="#pills-two" role="tab" aria-controls="pills-two" aria-selected="false">Anuncios Guardados</a>
+            </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link" id="pills-three-tab" data-toggle="pill" href="#pills-three" role="tab" aria-controls="pills-three" aria-selected="false">Notificaciones</a>
+            </li> -->
+          </ul>
+
+
+          <div class="tab-content" id="pills-tabContent">
+            <!-- Anuncios Publicados -->
+            <div class="tab-pane fade show active" id="pills-one" role="tabpanel" aria-labelledby="pills-one-tab">
+                <div class="bg-white scroll-x">
+                  <% if(anuncios.length > 0){ %>
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th scope="col">Código</th>
+                        <th scope="col">Anuncio</th>
+                        <th class="text-center" scope="col">Publicación</th>
+                        <th class="text-center" scope="col">Restante</th>
+                        <th class="text-center" scope="col">Estado</th>
+                        <th class="text-center" scope="col">Opciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% anuncios.forEach(item => { %> 
+                        <% moment.locale('es'); %>
+                        <tr> 
+                          <td scope="row"><span class="badge badge-secondary"><%= item.codigo %> </span></td>
+                          <td><%= item.subcategoria.nombre %></td>
+                          <td class="text-center"><%= moment(item.createdAt).format('L'); %></td>
+                          <td class="text-center">0 días</td>
+                          <td class="text-uppercase text-success text-center"><%= (item.id_estado === 1) ? 'activo' : 'desactivado' %></td>
+                          <td class="text-center"><a href="/editar-anuncio/<%= item.id %> " class="btn btn-primary btn-sm">Editar</a></td>
+                        </tr>      
+                      <% }) %>                
+                    </tbody>
+                  </table>
+                  <% }else{ %>
+                    <span>No tienes anuncios.</span>
+                  <% } %>  
+                </div>
+            </div>
+
+            <!-- Anuncios Guardados -->
+            <div class="tab-pane fade" id="pills-two" role="tabpanel" aria-labelledby="pills-two-tab">
+              <div class="bg-white scroll-x">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Código</th>
+                      <th scope="col">Anuncio</th>
+                      <th class="text-center" scope="col">Teléfono</th>
+                      <th class="text-center" scope="col">Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% // const likesArray = anunciosLike.likes.split(',') %> 
+                    <% anunciosLike.forEach(item => { %> 
+                      <% const likesArray = item.likes.split(',') %>
+                      <% const useridd = `${locals.usuario.user.id}` %> 
+                      <% if(likesArray.includes(useridd)){ %>
+                        <tr>
+                          <td scope="row"><span class="badge badge-secondary"><%= item.codigo %> </span></td>
+                          <td><%= item.subcategoria.nombre %></td>
+                          <td class="text-center"><%= item.telefono %></td>
+                          <td class="text-center"><a href="/anuncios/<%= item.id %>" class="btn text-danger btn-sm" title="Ir"><i class="fas fa-external-link-alt"></i></a></td>
+                        </tr>
+                      <% } %> 
+                  <% }) %>                      
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+
+            <!-- <div class="tab-pane fade" id="pills-three" role="tabpanel" aria-labelledby="pills-three-tab">Notificaciones</div> -->
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
