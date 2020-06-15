@@ -10,10 +10,11 @@ const fs = require('fs-extra');
 const upload = multer(configuracionMulter).single('imagen');
 
 cloudinary.config({
-  cloud_name: 'consurec',
-  api_key: '879218859671595',
-  api_secret: 'EG8Q32Fsrw8o5v1H1rknJNsDWCA'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 })
+
 
 
 module.exports = { 
