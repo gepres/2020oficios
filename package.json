@@ -13,7 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^9.7.6",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bcrypt": "^4.0.1",
     "cloudinary": "^1.21.0",
     "concurrently": "^5.1.0",
